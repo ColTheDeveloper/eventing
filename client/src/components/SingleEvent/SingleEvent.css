@@ -1,0 +1,36 @@
+.SingleEvent{
+    width: 30%;
+    transition: scale .2s;
+}
+.SingleEvent:hover{
+    scale: .98;
+}
+.SingleEvent>a{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+@media (max-width:560px){
+    .SingleEvent{
+        width: 100%;
+    }
+}
+.SingleEvent>a>img{
+    width: 100%;
+    height: 250px;
+    border-radius: 8px 8px 0 0;
+}
+.SingleEvent>a>span:nth-of-type(1){
+    font-weight: 700;
+}
+.SingleEvent>a>span:nth-of-type(2){
+    font-weight: 300;
+}
+.SingleEvent>a>span:nth-of-type(3){
+    font-weight: 100;
+}
+.SingleEvent>a>span:nth-of-type(4){
+    font-weight: 100;
+}

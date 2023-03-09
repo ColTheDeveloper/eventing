@@ -1,0 +1,33 @@
+.Navbar{
+    border-bottom: 1px solid rgb(178, 171, 171);
+    
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    
+}
+nav>span{
+    font-weight: 700;
+}
+nav>div{
+    display: flex;
+    align-items: center;
+}
+nav>div>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 60%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+nav>div>div>img{
+    width: 20px;
+}

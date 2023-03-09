@@ -1,0 +1,10 @@
+.imageSlide{
+    width: 100%;
+    height: 90vh;
+}
+@media (max-width:600px) {
+    .imageSlide{
+        width: 100%;
+        height: 30vh;
+    }
+}
