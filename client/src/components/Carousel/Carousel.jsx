@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "./Carousel.css"
 
-import image1 from "../../images/1.png";
+import image1 from "../../images/1.jpg";
 import image2 from "../../images/2.JPG";
 import image3 from "../../images/col fiver.png";
 
