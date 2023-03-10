@@ -14,7 +14,7 @@ app.use(bodyParser.json({extended:true}))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors(
     {
-        origin:["https://eventing.netlify.app"],
+        origin:["http://localhost:3000", "https://eventing.netlify.app"],
         methods:["GET","POST","PUT","DELETE"],
         credentials:true
     }
