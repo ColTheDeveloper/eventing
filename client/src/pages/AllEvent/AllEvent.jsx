@@ -2,29 +2,19 @@ import "./AllEvent.css";
 //import eventData from "../../data/AllEventData";
 import SingleEvent from "../../components/SingleEvent/SingleEvent";
 import AddEvent from "../../components/AddEvent/AddEvent";
-import { getAllEvent } from "../../api/eventRequest";
-import { useEffect, useState } from "react";
+// import { getAllEvent } from "../../api/eventRequest";
+import { useState } from "react";
+import { EventState } from "../../context/eventContextProvider";
 
 const AllEvent=()=>{
-    const [datas, setEventData]=useState([])
-
+    const {eventData}=EventState()
     const [query, setQuery]=useState("")
     
-    useEffect(() => {
-        const eventDataHandler= async ()=>{
-            try {
-                const response= await  getAllEvent()
-                setEventData(response.data)
-            } catch (error) {
-                console.log(error)    
-            }       
-        }
-        eventDataHandler()
-    },[])
-
-    const eventData=datas.filter(data=>data.name.toLowerCase().includes(query.toLowerCase()))
     
-    if(eventData.length===0){
+
+    const datas=eventData.filter(data=>data.name.toLowerCase().includes(query.toLowerCase()))
+    
+    if(datas.length===0){
         
         return(
             <div className="AllEvent">
@@ -58,8 +48,8 @@ const AllEvent=()=>{
                 </div>
                 
                 <div>
-                    {eventData.map((event)=>{
-                        const {_id,image,name,venue,address,eventDate,eventTime,noOfGoing}= event
+                    {datas.map((event)=>{
+                        const {_id,image,name,venue,address,eventDate,eventTime}= event
                         return(
                             <SingleEvent 
                                 _id={_id}
@@ -69,8 +59,7 @@ const AllEvent=()=>{
                                 venue={venue}
                                 address={address}
                                 time={eventTime}
-                                date={eventDate}
-                                noOfGoing={noOfGoing}                            
+                                date={eventDate}                 
                             />
                         )
                     })}

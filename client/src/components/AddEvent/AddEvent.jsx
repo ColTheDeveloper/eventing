@@ -26,11 +26,11 @@ const AddEvent=()=>{
         //IF IMAGE IS SELECTED THEN LOAD THIS IF STATEMENT
         if(image){
             const imageData= new FormData()
-            const filename= Date.now()+image.name;
-            imageData.append("name",filename);
-            imageData.append("image", image);
-            data.image=filename
+            imageData.append("file",image);
+            imageData.append("upload_preset","eventing");
+            imageData.append("cloud_name","djlvd6m7k" );
             uploadHandler(imageData)
+            
         }
         //FUNCTION FOR SENDING THE FORM DETAILS TO THE BACKEND SERVER
         submitHandler(data)
@@ -55,13 +55,17 @@ const AddEvent=()=>{
     const uploadHandler= async (imageData)=>{
         try {
             const response=await uploadImage(imageData)
-            console.log(response)
+            data.image=response.data.url.toString()
+            console.log(data.image)
+
+            
         } catch (error) {
             console.log(error)
         }
     }
     const submitHandler= async (data)=>{
         try {
+            console.log(data)
             const response=await createAnEvent(data)
             console.log(response)
             setData({

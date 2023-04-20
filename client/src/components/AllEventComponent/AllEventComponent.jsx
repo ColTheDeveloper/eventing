@@ -1,27 +1,12 @@
 import { Link } from "react-router-dom";
 import SingleEvent from "../SingleEvent/SingleEvent";
 import "./AllEventComponent.css"
-import { getAllEvent } from "../../api/eventRequest";
-import { useEffect, useState } from "react";
+// import { getAllEvent } from "../../api/eventRequest";
+// import { useEffect, useState } from "react";
+import { EventState } from "../../context/eventContextProvider";
 
 const AllEventComponent=()=>{
-    const [eventData, setEventData]=useState([])
-    
-    useEffect(() => {
-        const eventDataHandler= async ()=>{
-            try {
-                const response= await  getAllEvent()
-                console.log(response)
-                setEventData(response.data)
-            } catch (error) {
-                console.log(error)
-                
-            }
-            
-        }
-        eventDataHandler()
-    },[])
-
+    const {eventData}=EventState()
     
     
     return(
@@ -36,7 +21,7 @@ const AllEventComponent=()=>{
             <div>
                 {
                     eventData.map((event)=>{
-                        const {_id,image,name,venue,address,eventDate,eventTime,noOfGoing}= event
+                        const {_id,image,name,venue,address,eventDate,eventTime}= event
                         return(
                             <SingleEvent 
                                 _id={_id}
@@ -47,7 +32,6 @@ const AllEventComponent=()=>{
                                 address={address}
                                 time={eventTime}
                                 date={eventDate}
-                                noOfGoing={noOfGoing}
                             />
                         )
                     })
