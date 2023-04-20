@@ -16,7 +16,7 @@ function App() {
     const eventDataHandler= async ()=>{
         try {
           const response= await  getAllEvent()
-          setEventData(response.data.sort((a,b)=>1))
+          setEventData(response.data)
         } catch (error) {
             console.log(error)    
         }       
