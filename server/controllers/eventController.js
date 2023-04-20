@@ -16,8 +16,8 @@ export const createEvent= async (req,res)=>{
 // GET ALL EVENT
 export const getAllEvent= async (req,res)=>{
     try{
-        const allEvent= await eventModel.find().sort((a,b)=>1)
-        res.status(200).json(allEvent)
+        const allEvent= await eventModel.find()
+        res.status(200).json(allEvent.sort((a,b)=>1))
     }catch(error){
         res.status(500).json(error.message)
     }
