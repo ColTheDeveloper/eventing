@@ -15,8 +15,8 @@ function App() {
   useEffect(() => {
     const eventDataHandler= async ()=>{
         try {
-            const response= await  getAllEvent()
-            setEventData(response.data)
+          const response= await  getAllEvent()
+          setEventData(response.data.sort((a,b)=>1))
         } catch (error) {
             console.log(error)    
         }       
