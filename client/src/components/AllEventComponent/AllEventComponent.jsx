@@ -7,6 +7,8 @@ import { EventState } from "../../context/eventContextProvider";
 
 const AllEventComponent=()=>{
     const {eventData}=EventState()
+
+    const nineEventData=eventData.slice(0,9)
     
     
     return(
@@ -20,7 +22,7 @@ const AllEventComponent=()=>{
             </div>
             <div>
                 {
-                    eventData.map((event)=>{
+                    nineEventData.map((event)=>{
                         const {_id,image,name,venue,address,eventDate,eventTime}= event
                         return(
                             <SingleEvent 

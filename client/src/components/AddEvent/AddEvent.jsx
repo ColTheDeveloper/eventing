@@ -10,7 +10,6 @@ import "./AddEvent.css"
 const AddEvent=()=>{
     const [data, setData]=useState({
         name:"",
-        description:"",
         venue:"",
         address:"",
         eventDate:"",
@@ -21,7 +20,7 @@ const AddEvent=()=>{
 
     const imageRef=useRef()
 
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault()
         //IF IMAGE IS SELECTED THEN LOAD THIS IF STATEMENT
         if(image){
@@ -29,12 +28,33 @@ const AddEvent=()=>{
             imageData.append("file",image);
             imageData.append("upload_preset","eventing");
             imageData.append("cloud_name","djlvd6m7k" );
-            uploadHandler(imageData)
+            try {
+                const response=await uploadImage(imageData)
+                data.image=response.data.url.toString()
+            } catch (error) {
+                console.log(error)
+            }
             
+               
         }
         //FUNCTION FOR SENDING THE FORM DETAILS TO THE BACKEND SERVER
-        submitHandler(data)
-
+        try {
+            console.log(data)
+            const response=await createAnEvent(data)
+            console.log(response)
+            setData({
+                name:"",
+                venue:"",
+                address:"",
+                eventDate:"",
+                eventTime:"",
+                image:""
+            })
+            setImage()
+        } catch (error) {
+            console.log(error)
+        }
+        // submitHandler(data)
     }
 
     //FUNCTION THAT HANDLE THE CHANGES IN THE FORM
@@ -51,37 +71,7 @@ const AddEvent=()=>{
     const changeImage=()=>{
         imageRef.current.click()
     }
-    //
-    const uploadHandler= async (imageData)=>{
-        try {
-            const response=await uploadImage(imageData)
-            data.image=response.data.url.toString()
-            console.log(data.image)
-
-            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    const submitHandler= async (data)=>{
-        try {
-            console.log(data)
-            const response=await createAnEvent(data)
-            console.log(response)
-            setData({
-                name:"",
-                description:"",
-                venue:"",
-                address:"",
-                eventDate:"",
-                eventTime:"",
-                image:""
-            })
-            setImage()
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    
     return(
         <Popup    
             trigger={<button className="btn">Add New Event</button>}    
@@ -119,16 +109,7 @@ const AddEvent=()=>{
                                     value={data.name}
                                 />
                             </div>
-                            <div>
-                                <label htmlFor='description'>Description:</label><br />
-                                <textarea 
-                                    name="description"
-                                    id='description'
-                                    onChange={handleChange}
-                                    className='inputForm'
-                                    value={data.description}
-                                ></textarea>
-                            </div>
+                            
                             <div>
                                 <label htmlFor='venue' >Venue:</label>
                                 <input 
