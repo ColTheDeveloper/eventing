@@ -1,0 +1,12 @@
+.More{
+    font-family: 'poppins' , sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+.More>span{
+    padding: 5px;
+}
+.More>span:hover{
+    background-color: black;
+    color: #ddd;
+}

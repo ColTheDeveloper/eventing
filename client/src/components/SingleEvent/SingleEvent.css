@@ -2,10 +2,11 @@
     width: 30%;
     transition: scale .2s;
 }
-.SingleEvent:hover{
+/* .SingleEvent:hover{
     scale: .98;
-}
+} */
 .SingleEvent{
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -16,6 +17,18 @@
     .SingleEvent{
         width: 100%;
     }
+}
+.more-container{
+    position: absolute;
+    background-color: black;
+    color: #ddd;
+    right: 3%;
+    padding: .3rem;
+    border-radius: 2px;
+    transition: scale .2s;
+}
+.more-container:hover{
+    scale: 1.1;
 }
 .SingleEvent>img{
     width: 100%;

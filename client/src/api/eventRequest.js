@@ -10,6 +10,6 @@ const API=axios.create({baseURL:apiUrl})
 
 //export const createAnEvent=(data)=>API.post("/event", data)
 
-export const deleteAnEvent=(id)=>API.delete(`/event/${id}`)
+//export const deleteAnEvent=(id)=>API.delete(`/event/${id}`)
 
-export const editAnEvent=({id,data})=>API.put(`/event/${id}`, data)
+//export const editAnEvent=({id,data})=>API.put(`/event/${id}`, data)

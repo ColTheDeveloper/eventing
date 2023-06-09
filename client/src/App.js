@@ -1,5 +1,5 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import './App.css';
 import Layout from "./components/Layout/Layout";
 import AllEvent from "./pages/AllEvent/AllEvent";
@@ -7,24 +7,16 @@ import EventDetails from "./pages/EventDetails/EventDetails";
 import Home from "./pages/Home/Home";
 //import { getAllEvent } from "./api/eventRequest";
 import 'reactjs-popup/dist/index.css';
-import { EventState } from "./context/eventContextProvider";
-import useAxios from "./hooks/useAxios";
+//import { EventState } from "./context/eventContextProvider";
+//import useAxios from "./hooks/useAxios";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const {setEventData}=EventState()
-  const API=useAxios()
+  //const {eventData,setEventData,setLoading}=EventState()
+  //const API=useAxios()
 
-  useEffect(() => {
-    const eventDataHandler= async ()=>{
-        try {
-          const response= await  API.get("/event")
-          setEventData(response.data)
-        } catch (error) {
-            console.log(error)    
-        }       
-    }
-    eventDataHandler()
-  },[setEventData,API])
+  
 
   return (
     <div className="App">
@@ -37,7 +29,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-      
+    <ToastContainer />
     </div>
   );
 }

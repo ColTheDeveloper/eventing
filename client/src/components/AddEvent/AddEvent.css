@@ -2,7 +2,7 @@
     overflow: auto;
     max-height: 60vh;
     padding: 2rem;
-    font-family: rubik;
+    font-family: 'poppins';
 }
 .modal > .close {  
     cursor: pointer;  

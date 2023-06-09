@@ -6,6 +6,8 @@ import { uploadImage } from '../../api/imageUploadRequest';
 import eventIcon from "../../images/eventIcon.jpg"
 import "./AddEvent.css"
 import useAxios from '../../hooks/useAxios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddEvent=()=>{
@@ -18,6 +20,8 @@ const AddEvent=()=>{
         image:""
     })
     const [image,setImage]=useState()
+
+    const navigate=useNavigate()
 
     const API=useAxios()
 
@@ -44,6 +48,7 @@ const AddEvent=()=>{
         try {
             
             await API.post("/event", data)//createAnEvent(data)
+            toast.success("Event Created")
             // console.log(response)
             setData({
                 name:"",
@@ -54,7 +59,10 @@ const AddEvent=()=>{
                 image:""
             })
             setImage()
+            navigate("/")
+
         } catch (error) {
+            toast.error("Action Failed")
             console.log(error)
         }
         // submitHandler(data)
@@ -67,7 +75,7 @@ const AddEvent=()=>{
     //FUNCTION THAT HANDLES WHAT HAPPRN IF NEW IMAGE IS SELECTED FROM FILE 
     const handleImageChange=(e)=>{
         setImage(e.target.files[0])
-        console.log(e.target.files[0])
+        
     }
     //FUNCTION THAT WILL BE CALLED IF THE IMAGE SECTION OF THE FORM IS CLICKED 
     //IT SERVE AS A BUTTON THAT IS LINKED TO THE FILE TYPE INPUT ELEMENT
