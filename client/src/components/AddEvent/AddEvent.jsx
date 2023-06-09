@@ -1,10 +1,11 @@
 
 import { useRef, useState } from 'react';
 import Popup from 'reactjs-popup';
-import { createAnEvent } from '../../api/eventRequest';
+//import { createAnEvent } from '../../api/eventRequest';
 import { uploadImage } from '../../api/imageUploadRequest';
 import eventIcon from "../../images/eventIcon.jpg"
 import "./AddEvent.css"
+import useAxios from '../../hooks/useAxios';
 
 
 const AddEvent=()=>{
@@ -17,6 +18,8 @@ const AddEvent=()=>{
         image:""
     })
     const [image,setImage]=useState()
+
+    const API=useAxios()
 
     const imageRef=useRef()
 
@@ -39,9 +42,9 @@ const AddEvent=()=>{
         }
         //FUNCTION FOR SENDING THE FORM DETAILS TO THE BACKEND SERVER
         try {
-            console.log(data)
-            const response=await createAnEvent(data)
-            console.log(response)
+            
+            await API.post("/event", data)//createAnEvent(data)
+            // console.log(response)
             setData({
                 name:"",
                 venue:"",

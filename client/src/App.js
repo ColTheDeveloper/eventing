@@ -5,24 +5,26 @@ import Layout from "./components/Layout/Layout";
 import AllEvent from "./pages/AllEvent/AllEvent";
 import EventDetails from "./pages/EventDetails/EventDetails";
 import Home from "./pages/Home/Home";
-import { getAllEvent } from "./api/eventRequest";
+//import { getAllEvent } from "./api/eventRequest";
 import 'reactjs-popup/dist/index.css';
 import { EventState } from "./context/eventContextProvider";
+import useAxios from "./hooks/useAxios";
 
 function App() {
   const {setEventData}=EventState()
+  const API=useAxios()
 
   useEffect(() => {
     const eventDataHandler= async ()=>{
         try {
-          const response= await  getAllEvent()
+          const response= await  API.get("/event")
           setEventData(response.data)
         } catch (error) {
             console.log(error)    
         }       
     }
     eventDataHandler()
-  },[setEventData])
+  },[setEventData,API])
 
   return (
     <div className="App">
