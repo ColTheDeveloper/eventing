@@ -10,3 +10,9 @@
     background-color: black;
     color: #ddd;
 }
+@media (max-width=480px) {
+    .popup-content[role="tooltip"]{
+        width: 80%;
+    }
+    
+}
