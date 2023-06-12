@@ -11,7 +11,7 @@
     color: #ddd;
 }
 @media (max-width=480px) {
-    .popup-content[role="tooltip"]{
+    [role="tooltip"].popup-content{
         width: 80%;
     }
     
